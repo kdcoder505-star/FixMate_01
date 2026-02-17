@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Settings - FixMate Admin</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/admin.css">
+    <!-- Theme Manager -->
+    <script src="../../js/theme-manager.js"></script>
+    <!-- Supabase Lib -->
+    <style>
+        .settings-nav {
+            border-bottom: 2px solid transparent;
+            color: var(--text-secondary);
+            font-weight: 500;
+            padding: 0.75rem 0;
+            margin-right: 1.5rem;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .settings-nav:hover {
+            color: var(--primary);
+        }
+
+        .settings-nav.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .form-label-custom {
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: var(--text-dark);
+            margin-bottom: 0.4rem;
+        }
+
+        .form-control-custom {
+            padding: 0.6rem 1rem;
+            border: 1px solid var(--border-color);
+            background: #fcfcfc;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .form-control-custom:focus {
+            background: white;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+            outline: none;
+        }
+
+        .upload-box {
+            border: 2px dashed var(--border-color);
+            border-radius: 8px;
+            background: #f9fafb;
+            text-align: center;
+            padding: 1.5rem;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="app-container">
+        <div id="sidebar-container"></div>
+
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <div>
+                    <h2 class="h5 mb-0 fw-bold text-dark">System Settings</h2>
+                    <p class="text-secondary text-xs mb-0">Manage global configurations</p>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                    <div class="avatar-circle bg-white border shadow-sm rounded-circle d-flex align-items-center justify-content-center"
+                        style="width: 40px; height: 40px;">
+                        <span class="fw-bold text-dark small">AD</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="page-content">
+
+                <div class="mb-4 text-center text-md-start">
+                    <div class="d-flex border-bottom overflow-auto">
+                        <a href="#" class="settings-nav active" data-tab="general"><i class="fas fa-cog me-2"></i>
+                            General</a>
+                        <a href="#" class="settings-nav" data-tab="categories"><i class="fas fa-sitemap me-2"></i>
+                            Categories</a>
+                        <a href="#" class="settings-nav" data-tab="notifications"><i class="fas fa-envelope me-2"></i>
+                            Email Notifications</a>
+                        <a href="#" class="settings-nav" data-tab="security"><i class="fas fa-shield-alt me-2"></i>
+                            Security</a>
+                        <a href="#" class="settings-nav" data-tab="themes"><i class="fas fa-palette me-2"></i>
+                            Themes</a>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-column gap-4">
+
+                    <!-- Section: General -->
+                    <div id="section-general" class="settings-section active">
+                        <div class="d-flex flex-column gap-4">
+                            <!-- Branding -->
+                            <div class="admin-card p-4">
+                                <h6 class="fw-bold text-dark mb-1">Branding & Identity</h6>
+                                <p class="text-secondary text-xs mb-4">Customize how the system appears to staff and
+                                    students.
+                                </p>
+
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="mb-3">
+                                            <label class="form-label-custom">System Name</label>
+                                            <input type="text" class="form-control-custom w-100"
+                                                value="Metropolitan College Problem Management">
+                                        </div>
+                                        <div class="mb-0">
+                                            <label class="form-label-custom">Support Email Alias</label>
+                                            <input type="email" class="form-control-custom w-100"
+                                                value="support@metropolitancollege.edu">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="ms-md-4 mt-3 mt-md-0">
+                                            <label class="form-label-custom">College Logo</label>
+                                            <div class="upload-box">
+                                                <div class="bg-dark p-2 rounded mb-2">
+                                                    <i class="fas fa-university text-warning fa-lg"></i>
+                                                </div>
+                                                <div class="text-primary text-xs fw-bold">Click to upload</div>
+                                                <div class="text-muted text-xs" style="font-size: 0.65rem;">PNG, JPG up
+                                                    to 2MB
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Automated Responses -->
+                            <div class="admin-card p-4">
+                                <h6 class="fw-bold text-dark mb-1">Automated Responses</h6>
+                                <p class="text-secondary text-xs mb-4">Set up templates for automatic system
+                                    communications.</p>
+
+                                <div class="mb-3">
+                                    <label class="form-label-custom">Default "Problem Received" Message</label>
+                                    <textarea class="form-control-custom w-100"
+                                        rows="3">Dear student/staff, thank you for reporting the issue. Your ticket has been logged into our system and a member of our team will review it shortly. Ticket ID: {ticket_id}</textarea>
+                                    <div class="text-muted text-xs mt-1">Available variables: {ticket_id}, {user_name},
+                                        {date},
+                                        {category}</div>
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" checked id="autoReminder">
+                                    <label class="form-check-label text-sm text-dark fw-medium" for="autoReminder">
+                                        Enable automatic reminders for unassigned tickets after 24 hours
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- SLA -->
+                            <div class="admin-card p-4">
+                                <h6 class="fw-bold text-dark mb-1">Priority Levels & SLA</h6>
+                                <p class="text-secondary text-xs mb-4">Configure turnaround times for different problem
+                                    priorities.</p>
+
+                                <div class="table-responsive">
+                                    <table class="table table-clean align-middle">
+                                        <thead>
+                                            <tr>
+                                                <th class="ps-0 border-0 text-xs text-secondary text-uppercase ls-1">
+                                                    Priority
+                                                    Level</th>
+                                                <th class="border-0 text-xs text-secondary text-uppercase ls-1">
+                                                    Description</th>
+                                                <th class="border-0 text-xs text-secondary text-uppercase ls-1">
+                                                    Turnaround Time
+                                                    (Hours)</th>
+                                                <th
+                                                    class="border-0 text-xs text-secondary text-uppercase ls-1 text-end pe-0">
+                                                    Escalation Threshold</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="ps-0"><span
+                                                        class="badge bg-danger-subtle text-danger border border-danger-subtle rounded-pill text-xs px-3">High</span>
+                                                </td>
+                                                <td class="text-sm text-dark">Critical issues impacting entire
+                                                    departments or
+                                                    safety</td>
+                                                <td><input type="number"
+                                                        class="form-control form-control-sm text-center fw-bold"
+                                                        value="4" style="width: 60px;"></td>
+                                                <td class="text-end pe-0 text-sm fw-bold text-dark">8 Hours</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="ps-0"><span
+                                                        class="badge bg-warning-subtle text-warning border border-warning-subtle rounded-pill text-xs px-3">Medium</span>
+                                                </td>
+                                                <td class="text-sm text-dark">Issues affecting individual productivity
+                                                    or
+                                                    non-critical tools</td>
+                                                <td><input type="number"
+                                                        class="form-control form-control-sm text-center fw-bold"
+                                                        value="24" style="width: 60px;"></td>
+                                                <td class="text-end pe-0 text-sm fw-bold text-dark">48 Hours</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="ps-0"><span
+                                                        class="badge bg-success-subtle text-success border border-success-subtle rounded-pill text-xs px-3">Low</span>
+                                                </td>
+                                                <td class="text-sm text-dark">General inquiries, feedback, or minor
+                                                    aesthetic
+                                                    bugs</td>
+                                                <td><input type="number"
+                                                        class="form-control form-control-sm text-center fw-bold"
+                                                        value="72" style="width: 60px;"></td>
+                                                <td class="text-end pe-0 text-sm fw-bold text-dark">5 Days</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section: Categories -->
+                    <div id="section-categories" class="settings-section">
+                        <div class="admin-card p-4 text-center py-5">
+                            <i class="fas fa-sitemap fa-3x text-light mb-3"></i>
+                            <h5 class="fw-bold">Manage Categories</h5>
+                            <p class="text-secondary mx-auto" style="max-width: 400px;">Organize and group common campus
+                                issues for easier reporting and tracking.</p>
+                            <button class="btn btn-primary-action px-4 shadow-sm" onclick="openAddCategoryModal()">
+                                <i class="fas fa-plus me-2"></i> Add New Category
+                            </button>
+
+                            <div class="mt-4 row g-3 text-start" id="categories-list">
+                                <!-- Categories will be listed here -->
+                                <div class="col-md-4">
+                                    <div
+                                        class="p-3 border rounded-3 bg-white d-flex align-items-center justify-content-between shadow-sm">
+                                        <div class="d-flex align-items-center">
+                                            <div class="bg-primary-subtle text-primary p-2 rounded-2 me-3"><i
+                                                    class="fas fa-wifi"></i></div>
+                                            <div class="fw-bold">Wi-Fi & Network</div>
+                                        </div>
+                                        <button class="btn btn-link text-danger p-0"><i
+                                                class="fas fa-trash-alt"></i></button>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div
+                                        class="p-3 border rounded-3 bg-white d-flex align-items-center justify-content-between shadow-sm">
+                                        <div class="d-flex align-items-center">
+                                            <div class="bg-primary-subtle text-primary p-2 rounded-2 me-3"><i
+                                                    class="fas fa-bolt"></i></div>
+                                            <div class="fw-bold">Electrical</div>
+                                        </div>
+                                        <button class="btn btn-link text-danger p-0"><i
+                                                class="fas fa-trash-alt"></i></button>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div
+                                        class="p-3 border rounded-3 bg-white d-flex align-items-center justify-content-between shadow-sm">
+                                        <div class="d-flex align-items-center">
+                                            <div class="bg-primary-subtle text-primary p-2 rounded-2 me-3"><i
+                                                    class="fas fa-faucet"></i></div>
+                                            <div class="fw-bold">Plumbing</div>
+                                        </div>
+                                        <button class="btn btn-link text-danger p-0"><i
+                                                class="fas fa-trash-alt"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section: Email Notifications -->
+                    <div id="section-notifications" class="settings-section">
+                        <div class="admin-card p-4">
+                            <h6 class="fw-bold text-dark mb-1">Email Configurations</h6>
+                            <p class="text-secondary text-xs mb-4">Set up when and to whom system alerts are sent.</p>
+
+                            <div class="d-flex flex-column gap-3">
+                                <div
+                                    class="p-3 border rounded-3 bg-white d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <div class="fw-bold">New Ticket Notification</div>
+                                        <div class="text-secondary text-xs">Send email to admin when a new issue is
+                                            reported.</div>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" checked>
+                                    </div>
+                                </div>
+                                <div
+                                    class="p-3 border rounded-3 bg-white d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <div class="fw-bold">Status Update Alert</div>
+                                        <div class="text-secondary text-xs">Notify students when their reported issue
+                                            status changes.</div>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" checked>
+                                    </div>
+                                </div>
+                                <div
+                                    class="p-3 border rounded-3 bg-white d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <div class="fw-bold">Daily Cleanup Summary</div>
+                                        <div class="text-secondary text-xs">Send a daily summary of resolved and pending
+                                            issues.</div>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section: Security -->
+                    <div id="section-security" class="settings-section">
+                        <div class="admin-card p-4">
+                            <h6 class="fw-bold text-dark mb-1">Security Settings</h6>
+                            <p class="text-secondary text-xs mb-4">Manage administrative access and system security.</p>
+
+                            <div class="mb-3" style="max-width: 400px;">
+                                <label class="form-label-custom">Admin Key (For New Staff Registration)</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control-custom w-100" value="SFS_STAFF_2024">
+                                    <button class="btn btn-outline-secondary border-color" type="button"><i
+                                            class="fas fa-eye"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" checked id="twoFactor">
+                                <label class="form-check-label text-sm text-dark fw-medium" for="twoFactor">
+                                    Require 2FA for all administrative accounts
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Section: Themes -->
+                <div id="section-themes" class="settings-section">
+                    <div class="admin-card p-4">
+                        <h6 class="fw-bold text-dark mb-1">Theme Options</h6>
+                        <p class="text-secondary text-xs mb-4">Select a premium color palette for the FixMate platform.
+                        </p>
+
+                        <div class="row g-4" id="theme-gallery">
+                            <!-- Theme cards will be generated by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Actions -->
+                <div class="d-flex justify-content-end align-items-center mt-4 pt-3 border-top gap-3">
+                    <div class="text-muted text-xs me-auto"><i class="fas fa-info-circle me-1"></i> Last updated: Oct
+                        24, 2023 by Admin</div>
+                    <button class="btn btn-white border shadow-sm fw-medium text-secondary px-4">Discard
+                        Changes</button>
+                    <button class="btn btn-primary-action shadow-sm px-4">Save Settings</button>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
+    <script src="../../js/firebase-config.js"></script>
+    <script src="../../js/firebase-adapter.js"></script>
+    <script src="../../js/nav.js"></script>
+    <script src="../../js/admin/settings.js"></script>
+</body>
+
+</html>

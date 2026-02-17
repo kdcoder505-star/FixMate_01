@@ -1,0 +1,101 @@
+/* --- VERTICAL PROGRESS TRACKER --- */
+.vertical-tracker {
+    position: relative;
+    padding-left: 0;
+    margin-left: 0.5rem;
+}
+
+.tracker-item {
+    position: relative;
+    padding-bottom: 3rem;
+    padding-left: 3rem;
+}
+
+/* Vertical Line connecting steps */
+.tracker-item::before {
+    content: '';
+    position: absolute;
+    left: 17px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--border);
+    z-index: 0;
+}
+
+.tracker-item:last-child::before {
+    display: none;
+}
+
+/* Icon Circle */
+.tracker-icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--bg-surface);
+    border: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+/* State - Active (Current Step) */
+.tracker-item.active .tracker-icon {
+    border-color: var(--primary);
+    background-color: var(--bg-surface);
+    color: var(--primary);
+    box-shadow: 0 0 0 4px #f1f5f9;
+}
+
+/* State - Completed (Past Step) */
+.tracker-item.completed .tracker-icon {
+    border-color: var(--success);
+    background-color: var(--success);
+    color: white;
+}
+
+.tracker-item.completed::before {
+    background-color: var(--success);
+}
+
+/* Info Box */
+.info-box-blue {
+    background-color: var(--info-bg);
+    border: 1px solid var(--info-bg);
+    /* or darker shade */
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    color: var(--text-primary);
+}
+
+.info-box-blue .icon-circle {
+    width: 10px;
+    height: 10px;
+    background: var(--info);
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+
+/* Comments Section */
+.comment-item {
+    background: var(--bg-body);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border);
+}
+
+.comment-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}

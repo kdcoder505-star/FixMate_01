@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FixMate - Campus Resolution System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Theme Manager -->
+    <script src="js/theme-manager.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/firebase-adapter.js"></script>
+    <script src="js/seed-data.js"></script>
+</head>
+
+<body class="bg-surface">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top navbar-blur py-3">
+        <div class="container">
+            <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="#">
+                <div class="bg-primary text-white rounded-3 d-flex align-items-center justify-content-center"
+                    style="width: 36px; height: 36px;">
+                    <i class="fas fa-university"></i>
+                </div>
+                <span class="text-dark fw-bold" style="letter-spacing: -0.5px;">SFS College <span
+                        class="text-primary">PMS</span></span>
+            </a>
+            <button class="navbar-toggler border-0 p-0" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
+                <i class="fas fa-bars text-primary fs-4"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center gap-lg-4 gap-3 mt-3 mt-lg-0">
+                    <li class="nav-item"><a class="nav-link fw-medium text-secondary" href="#features">Features</a></li>
+                    <li class="nav-item"><a class="nav-link fw-medium text-secondary" href="#how-it-works">How It
+                            Works</a></li>
+                    <li class="nav-item">
+                        <a href="login.html" class="btn btn-primary px-4 shadow-sm fw-semibold">
+                            Login Portal <i class="fas fa-arrow-right ms-2 text-xs"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="position-relative overflow-hidden" style="padding-top: 140px; padding-bottom: 100px;">
+        <!-- Background Decor -->
+        <div class="position-absolute top-0 start-0 w-100 h-100 z-0">
+            <div class="position-absolute top-0 end-0 bg-primary opacity-10 rounded-circle blur-3xl"
+                style="width: 600px; height: 600px; transform: translate(30%, -30%); filter: blur(80px);"></div>
+            <div class="position-absolute bottom-0 start-0 bg-info opacity-10 rounded-circle blur-3xl"
+                style="width: 500px; height: 500px; transform: translate(-20%, 20%); filter: blur(80px);"></div>
+        </div>
+
+        <div class="container position-relative z-1">
+            <div class="row align-items-center gy-5">
+                <div class="col-lg-6">
+                    <div
+                        class="d-inline-flex align-items-center gap-2 bg-white border shadow-sm rounded-pill px-3 py-1 mb-4">
+                        <span class="badge bg-primary-subtle text-primary rounded-pill px-2">New</span>
+                        <span class="text-secondary text-sm fw-medium">Enhanced Reporting System v2.0</span>
+                    </div>
+                    <h1 class="display-4 fw-bold mb-4 text-dark lh-sm" style="letter-spacing: -0.02em;">
+                        Streamline Campus <br>
+                        <span class="text-gradient">Resolution & Maintenance</span>
+                    </h1>
+                    <p class="lead text-secondary mb-5 pe-lg-5" style="font-weight: 400;">
+                        The official Property Management System for SFS College. Report issues, track status, and ensure
+                        a better campus environment instantly.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="login.html" class="btn btn-primary btn-lg px-5 shadow-lg hover-lift">
+                            Report an Issue
+                        </a>
+                        <a href="#how-it-works" class="btn btn-outline btn-lg px-4 bg-white shadow-sm hover-lift">
+                            <i class="fas fa-play-circle me-2 text-primary"></i> How it works
+                        </a>
+                    </div>
+
+                    <div class="mt-5 pt-4 d-flex align-items-center gap-4 text-secondary text-sm">
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="fas fa-check-circle text-success"></i> <span>Zero Delays</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="fas fa-check-circle text-success"></i> <span>Real-time Tracking</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="fas fa-check-circle text-success"></i> <span>Admin Dashboard</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="position-relative ms-lg-5">
+                        <!-- Main Card -->
+                        <div class="glass-card p-4 rounded-4 shadow-lg position-relative z-2 main-hero-card">
+                            <div class="d-flex justify-content-between align-items-start mb-4">
+                                <div>
+                                    <h5 class="fw-bold mb-1">Issue #CMS-2931</h5>
+                                    <div class="d-flex align-items-center gap-2 text-sm text-secondary">
+                                        <i class="far fa-clock"></i> Just now
+                                    </div>
+                                </div>
+                                <span
+                                    class="badge bg-warning-subtle text-warning border border-warning-subtle rounded-pill px-3">Pending</span>
+                            </div>
+                            <div class="d-flex gap-3 mb-4">
+                                <div class="bg-light rounded-3 d-flex align-items-center justify-content-center text-secondary"
+                                    style="width: 60px; height: 60px;">
+                                    <i class="fas fa-wifi fa-lg"></i>
+                                </div>
+                                <div>
+                                    <div class="text-sm fw-bold text-dark">Wi-Fi Connectivity Issue</div>
+                                    <div class="text-xs text-secondary mt-1">Block C, Room 302</div>
+                                    <p class="text-sm text-muted mt-2 mb-0 line-clamp-2">The internet connection has
+                                        been unstable since morning...</p>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+                                <div class="d-flex align-items-center gap-2">
+                                    <div class="avatar-circle bg-primary text-white text-xs border-0"
+                                        style="width: 28px; height: 28px;">SJ</div>
+                                    <span class="text-xs fw-bold text-secondary">Steve J.</span>
+                                </div>
+                                <button class="btn btn-sm btn-primary py-1 px-3 text-xs rounded-pill">View
+                                    Details</button>
+                            </div>
+                        </div>
+
+                        <!-- Floating Card 1 -->
+                        <div class="card p-3 border-0 shadow position-absolute z-3 hover-lift d-none d-md-block"
+                            style="top: -20px; right: -20px; width: 180px; border-radius: 16px;">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="bg-success-subtle text-success rounded-circle p-2 d-flex align-items-center justify-content-center"
+                                    style="width: 40px; height: 40px;">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div>
+                                    <div class="fw-bold text-dark text-sm">Resolved</div>
+                                    <div class="text-xs text-muted">24h Avg. Time</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Floating Card 2 -->
+                        <div class="card p-3 border-0 shadow position-absolute z-0"
+                            style="bottom: -30px; left: -30px; width: 220px; border-radius: 16px; transform: rotate(3deg); opacity: 0.9;">
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <small class="text-uppercase text-secondary fw-bold" style="font-size: 10px;">System
+                                    Status</small>
+                                <span class="ms-auto w-2 h-2 bg-success rounded-circle"></span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-end">
+                                <div>
+                                    <div class="fw-bold h5 mb-0">98.5%</div>
+                                    <div class="text-xs text-secondary">Uptime</div>
+                                </div>
+                                <div
+                                    style="height: 30px; width: 80px; background: linear-gradient(90deg, #eef2ff 0%, #c7d2fe 100%); border-radius: 4px;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Features Section -->
+    <section id="features" class="py-5 position-relative">
+        <div class="container py-5">
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-6 text-center">
+                    <h6 class="text-primary fw-bold text-uppercase ls-wider mb-2">Why SFS PMS?</h6>
+                    <h2 class="fw-bold display-6 text-dark mb-3">Designed for Speed & Efficiency</h2>
+                    <p class="text-secondary">Simplifying campus maintenance with a centralized digital platform.</p>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <!-- Feature 1 -->
+                <div class="col-md-4">
+                    <div class="card glass-card h-100 p-4 border-0 hover-lift">
+                        <div class="mb-4">
+                            <div class="d-inline-flex align-items-center justify-content-center bg-primary-light text-primary rounded-4"
+                                style="width: 60px; height: 60px; font-size: 1.5rem;">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                        </div>
+                        <h4 class="fw-bold mb-3 h5">Instant Reporting</h4>
+                        <p class="text-secondary text-sm leading-relaxed mb-0">
+                            Students can report issues instantly via the portal. Categorize problems like Electrical,
+                            Plumbing, or Wi-Fi for faster routing.
+                        </p>
+                    </div>
+                </div>
+                <!-- Feature 2 -->
+                <div class="col-md-4">
+                    <div class="card glass-card h-100 p-4 border-0 hover-lift">
+                        <div class="mb-4">
+                            <div class="d-inline-flex align-items-center justify-content-center bg-success-subtle text-success rounded-4"
+                                style="width: 60px; height: 60px; font-size: 1.5rem;">
+                                <i class="fas fa-tasks"></i>
+                            </div>
+                        </div>
+                        <h4 class="fw-bold mb-3 h5">Smart Workflow</h4>
+                        <p class="text-secondary text-sm leading-relaxed mb-0">
+                            Admins get a unified dashboard. Assign tasks to specific departments (IT, Maintenance,
+                            Housekeeping) automatically.
+                        </p>
+                    </div>
+                </div>
+                <!-- Feature 3 -->
+                <div class="col-md-4">
+                    <div class="card glass-card h-100 p-4 border-0 hover-lift">
+                        <div class="mb-4">
+                            <div class="d-inline-flex align-items-center justify-content-center bg-info-subtle text-info rounded-4"
+                                style="width: 60px; height: 60px; font-size: 1.5rem;">
+                                <i class="fas fa-chart-pie"></i>
+                            </div>
+                        </div>
+                        <h4 class="fw-bold mb-3 h5">Data Analytics</h4>
+                        <p class="text-secondary text-sm leading-relaxed mb-0">
+                            Track resolution times and identify recurring issues with comprehensive reports and visual
+                            charts.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works / Steps -->
+    <section id="how-it-works" class="py-5 bg-white border-top">
+        <div class="container py-5">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-5 order-lg-2">
+                    <div class="position-relative">
+                        <div class="absolute-bg bg-primary opacity-10 rounded-circle blur-3xl position-absolute end-0 top-50 translate-middle-y"
+                            style="width: 300px; height: 300px; filter: blur(60px);"></div>
+                        <!-- Abstract UI Representation -->
+                        <div class="card border-0 shadow-lg p-0 overflow-hidden rounded-4">
+                            <div class="bg-light p-3 border-bottom d-flex align-items-center gap-2">
+                                <div class="rounded-circle bg-danger" style="width: 10px; height: 10px;"></div>
+                                <div class="rounded-circle bg-warning" style="width: 10px; height: 10px;"></div>
+                                <div class="rounded-circle bg-success" style="width: 10px; height: 10px;"></div>
+                            </div>
+                            <div class="p-4 bg-white">
+                                <div class="skeleton-line w-75 h-4 mb-3 bg-light rounded"></div>
+                                <div class="skeleton-line w-50 h-4 mb-4 bg-light rounded"></div>
+                                <div class="d-flex gap-3">
+                                    <div class="skeleton-box w-25 h-20 bg-light rounded-3"></div>
+                                    <div class="skeleton-box w-25 h-20 bg-light rounded-3"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7 order-lg-1">
+                    <h6 class="text-primary fw-bold text-uppercase ls-wider mb-2">Workflow</h6>
+                    <h2 class="fw-bold display-6 text-dark mb-4">How it works</h2>
+
+                    <div class="d-flex gap-4 mb-4">
+                        <div class="d-flex flex-column align-items-center">
+                            <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center fw-bold shadow-sm"
+                                style="width: 40px; height: 40px; flex-shrink: 0;">1</div>
+                            <div class="h-100 border-start border-2 border-light my-2"></div>
+                        </div>
+                        <div class="pb-4">
+                            <h5 class="fw-bold text-dark">Submit Complaint</h5>
+                            <p class="text-secondary mb-0">Student logs in and submits a complaint with category,
+                                priority, and optional photos.</p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-4 mb-4">
+                        <div class="d-flex flex-column align-items-center">
+                            <div class="rounded-circle bg-white border border-primary text-primary d-flex align-items-center justify-content-center fw-bold shadow-sm"
+                                style="width: 40px; height: 40px; flex-shrink: 0;">2</div>
+                            <div class="h-100 border-start border-2 border-light my-2"></div>
+                        </div>
+                        <div class="pb-4">
+                            <h5 class="fw-bold text-dark">Admin Review & Assign</h5>
+                            <p class="text-secondary mb-0">Admin reviews the issue on the dashboard and assigns it to
+                                the relevant department (e.g., IT, Maintenance).</p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-4">
+                        <div class="d-flex flex-column align-items-center">
+                            <div class="rounded-circle bg-white border border-primary text-primary d-flex align-items-center justify-content-center fw-bold shadow-sm"
+                                style="width: 40px; height: 40px; flex-shrink: 0;">3</div>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold text-dark">Resolution</h5>
+                            <p class="text-secondary mb-0">The issue is fixed, status is updated to 'Resolved', and the
+                                student is notified.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white border-top py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <a class="navbar-brand fw-bold d-flex align-items-center gap-2 mb-3" href="#">
+                        <div class="bg-primary text-white rounded-3 d-flex align-items-center justify-content-center"
+                            style="width: 32px; height: 32px;">
+                            <i class="fas fa-university text-xs"></i>
+                        </div>
+                        <span class="text-dark fw-bold">FixMate</span>
+                    </a>
+                    <p class="text-secondary small mb-4">
+                        Empowering SFS College with efficient, digital facility management solutions.
+                    </p>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="btn btn-sm btn-light border rounded-circle"
+                            style="width: 36px; height: 36px;"><i class="fab fa-twitter text-secondary"></i></a>
+                        <a href="#" class="btn btn-sm btn-light border rounded-circle"
+                            style="width: 36px; height: 36px;"><i class="fab fa-linkedin-in text-secondary"></i></a>
+                        <a href="#" class="btn btn-sm btn-light border rounded-circle"
+                            style="width: 36px; height: 36px;"><i class="fab fa-instagram text-secondary"></i></a>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-2 ms-auto">
+                    <h6 class="fw-bold text-dark mb-3 text-sm text-uppercase">Platform</h6>
+                    <ul class="list-unstyled d-flex flex-column gap-2 text-sm">
+                        <li><a href="pages/login.html" class="text-secondary text-decoration-none hover-primary">Student
+                                Login</a></li>
+                        <li><a href="pages/login.html" class="text-secondary text-decoration-none hover-primary">Admin
+                                Login</a></li>
+                        <li><a href="#features" class="text-secondary text-decoration-none hover-primary">Features</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2">
+                    <h6 class="fw-bold text-dark mb-3 text-sm text-uppercase">Support</h6>
+                    <ul class="list-unstyled d-flex flex-column gap-2 text-sm">
+                        <li><a href="#" class="text-secondary text-decoration-none hover-primary">Help Center</a></li>
+                        <li><a href="#" class="text-secondary text-decoration-none hover-primary">Contact Admin</a></li>
+                        <li><a href="#" class="text-secondary text-decoration-none hover-primary">Emergency</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div
+                class="border-top mt-5 pt-4 d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+                <p class="mb-0 text-secondary text-xs">&copy; 2024 SFS College. All rights reserved.</p>
+                <div class="d-flex gap-4 text-xs">
+                    <a href="#" class="text-secondary text-decoration-none">Privacy Policy</a>
+                    <a href="#" class="text-secondary text-decoration-none">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Smooth Scroll Script -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

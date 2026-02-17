@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Complaints - FixMate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/admin.css">
+    <link rel="stylesheet" href="../../css/student.css">
+</head>
+
+<body>
+
+    <div class="app-container">
+        <!-- Shared Sidebar -->
+        <div id="sidebar-container"></div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <div class="page-content">
+                <div class="content-header mb-4">
+                    <div>
+                        <h1 class="fw-bold text-dark mb-1">My History</h1>
+                        <p class="text-secondary m-0">View and manage all your past and present tickets.</p>
+                    </div>
+                    <div>
+                        <button class="btn btn-outline-secondary btn-sm" id="resetBtn"><i
+                                class="fas fa-sync-alt me-2"></i>Reset Filters</button>
+                    </div>
+                </div>
+
+                <!-- Filters Row -->
+                <div class="bg-white p-3 rounded-3 border mb-4 shadow-sm">
+                    <div class="row g-3">
+                        <div class="col-md-5">
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0"><i
+                                        class="fas fa-search text-secondary"></i></span>
+                                <input type="text" class="form-control border-start-0 bg-light" id="searchInput"
+                                    placeholder="Search by title or ID...">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-select" id="statusFilter">
+                                <option value="All">Status: All</option>
+                                <option value="Pending">Pending</option>
+                                <option value="In Progress">In Progress</option>
+                                <option value="Resolved">Resolved</option>
+                                <option value="Rejected">Rejected</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <select class="form-select" id="categoryFilter">
+                                <option value="All">Category: All</option>
+                                <option value="Classroom">Classroom</option>
+                                <option value="Lab">Lab</option>
+                                <option value="Veranda">Veranda</option>
+                                <option value="Wi-Fi">Wi-Fi</option>
+                                <option value="Restroom">Restroom</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- List -->
+                <div id="complaintsContainer" class="d-flex flex-column gap-3">
+                    <div class="col-12 text-center py-5">
+                        <div class="spinner-border text-primary" role="status"></div>
+                        <p class="text-muted mt-3">Loading your tickets...</p>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
+    <script src="../../js/firebase-config.js"></script>
+    <script src="../../js/firebase-adapter.js"></script>
+    <script src="../../js/nav.js"></script>
+    <script src="../../js/student/complaints.js"></script>
+</body>
+
+</html>

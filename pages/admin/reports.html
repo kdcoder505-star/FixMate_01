@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports & Analytics - FixMate Admin</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/admin.css">
+    <!-- External Libs -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+
+<body>
+
+    <div class="app-container">
+        <div id="sidebar-container"></div>
+
+        <main class="main-content">
+            <header class="top-header">
+                <div>
+                    <h2 class="h5 mb-0 fw-bold text-dark">Analytics & Reports</h2>
+                    <p class="text-secondary text-xs mb-0">Home > Reports</p>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                    <div class="position-relative">
+                        <button class="btn btn-white border shadow-sm btn-sm fw-medium text-secondary"
+                            id="dateRangePicker">
+                            <i class="far fa-calendar-alt me-2"></i> <span id="selectedDateText">Select Date
+                                Range</span> <i class="fas fa-chevron-down ms-2 text-xs"></i>
+                        </button>
+                    </div>
+                    <button class="btn btn-primary-action btn-sm shadow-sm text-white" id="exportPDF">
+                        <i class="fas fa-file-pdf"></i> Export PDF
+                    </button>
+                    <button class="btn btn-white border shadow-sm btn-sm fw-medium text-dark" id="exportExcel">
+                        <i class="fas fa-file-excel text-success me-1"></i> Export Excel
+                    </button>
+                </div>
+            </header>
+
+            <div class="page-content">
+
+                <!-- Charts Row -->
+                <div class="row g-4 mb-4">
+                    <div class="col-lg-5">
+                        <div class="admin-card h-100 p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h6 class="fw-bold text-dark mb-0">Issues by Category</h6>
+                                <button class="btn btn-sm text-secondary"><i class="fas fa-ellipsis-v"></i></button>
+                            </div>
+                            <div style="height: 250px;">
+                                <canvas id="categoryChart"></canvas>
+                            </div>
+                            <div
+                                class="d-flex justify-content-around mt-4 text-xs text-secondary text-uppercase fw-bold">
+                                <span>Classroom</span>
+                                <span>Lab</span>
+                                <span>Veranda</span>
+                                <span>Wi-Fi</span>
+                                <span>Restroom</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="admin-card h-100 p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <div>
+                                    <h6 class="fw-bold text-dark mb-0">Issue Trends</h6>
+                                    <p class="text-secondary text-xs mb-0">Last 30 days daily volume</p>
+                                </div>
+                                <span class="badge bg-success-subtle text-success fw-bold"><i
+                                        class="fas fa-arrow-trend-up me-1"></i> 15%</span>
+                            </div>
+                            <div style="height: 250px;">
+                                <canvas id="trendChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats Row -->
+                <div class="row g-4 mb-4">
+                    <div class="col-xl-3 col-sm-6">
+                        <div class="admin-card p-4">
+                            <div class="text-secondary text-xs uppercase fw-bold mb-1">Total Issues</div>
+                            <div class="fs-2 fw-bold text-dark mb-2">450</div>
+                            <div class="text-success text-xs fw-bold">
+                                <i class="fas fa-arrow-up"></i> 5.2% <span class="text-secondary fw-normal">vs last
+                                    month</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6">
+                        <div class="admin-card p-4">
+                            <div class="text-secondary text-xs uppercase fw-bold mb-1">Resolution Rate</div>
+                            <div class="fs-2 fw-bold text-dark mb-2">94.2%</div>
+                            <div class="text-success text-xs fw-bold">
+                                <i class="fas fa-arrow-up"></i> 1.4% <span
+                                    class="text-secondary fw-normal">improvement</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6">
+                        <div class="admin-card p-4">
+                            <div class="text-secondary text-xs uppercase fw-bold mb-1">Avg. Resolution Time</div>
+                            <div class="fs-2 fw-bold text-dark mb-2">1.2 Days</div>
+                            <div class="text-success text-xs fw-bold">
+                                <i class="fas fa-arrow-down"></i> 12% <span
+                                    class="text-secondary fw-normal">faster</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6">
+                        <div class="admin-card p-4">
+                            <div class="text-secondary text-xs uppercase fw-bold mb-1">Student Satisfaction</div>
+                            <div class="fs-2 fw-bold text-dark mb-2">4.8<span class="fs-5 text-secondary">/5.0</span>
+                            </div>
+                            <div class="text-info text-xs fw-bold">
+                                <i class="fas fa-info-circle"></i> <span class="text-secondary fw-normal">Based on 320
+                                    reviews</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Resolved Issues Table -->
+                <div class="admin-card p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h6 class="fw-bold text-dark mb-0">Recent Resolved Issues</h6>
+                        <a href="complaints.html" class="text-primary text-sm fw-medium text-decoration-none">View
+                            all</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-clean table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Case ID</th>
+                                    <th>Category</th>
+                                    <th>Issue Description</th>
+                                    <th>Resolution Time</th>
+                                    <th class="text-end">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="fw-bold text-dark">#CMS-2931</td>
+                                    <td><span
+                                            class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill">IT
+                                            Services</span></td>
+                                    <td class="text-muted">WLAN outage in Block C...</td>
+                                    <td class="fw-medium text-dark">4h 20m</td>
+                                    <td class="text-end"><span class="text-success fw-bold text-xs"><i
+                                                class="fas fa-circle me-1" style="font-size: 6px;"></i> Resolved</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold text-dark">#CMS-2928</td>
+                                    <td><span
+                                            class="badge bg-warning-subtle text-warning border border-warning-subtle rounded-pill">Facilities</span>
+                                    </td>
+                                    <td class="text-muted">Water leak in Lab 402...</td>
+                                    <td class="fw-medium text-dark">1d 12h</td>
+                                    <td class="text-end"><span class="text-success fw-bold text-xs"><i
+                                                class="fas fa-circle me-1" style="font-size: 6px;"></i> Resolved</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold text-dark">#CMS-2925</td>
+                                    <td><span
+                                            class="badge bg-info-subtle text-info border border-info-subtle rounded-pill">Academic</span>
+                                    </td>
+                                    <td class="text-muted">Course registration error...</td>
+                                    <td class="fw-medium text-dark">6h 15m</td>
+                                    <td class="text-end"><span class="text-success fw-bold text-xs"><i
+                                                class="fas fa-circle me-1" style="font-size: 6px;"></i> Resolved</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="../../js/firebase-config.js"></script>
+    <script src="../../js/firebase-adapter.js"></script>
+    <script src="../../js/nav.js"></script>
+    <script src="../../js/admin/reports.js"></script>
+</body>
+
+</html>

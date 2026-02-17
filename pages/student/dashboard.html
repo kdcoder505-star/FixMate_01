@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - SFS College PMS</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/admin.css">
+    <link rel="stylesheet" href="../../css/student.css">
+    <!-- Supabase -->
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
+    <script src="../../js/firebase-config.js"></script>
+    <script src="../../js/firebase-adapter.js"></script>
+</head>
+
+<body>
+
+    <div class="app-container">
+        <!-- Shared Sidebar -->
+        <div id="sidebar-container"></div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <div>
+                    <h2 class="h5 mb-0 fw-bold text-dark">My Complaints</h2>
+                    <p class="text-secondary text-xs mb-0">Track and manage your reported issues</p>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                    <a href="new-complaint.html" class="btn btn-primary-action shadow-sm">
+                        <i class="fas fa-plus"></i> New Complaint
+                    </a>
+                </div>
+            </header>
+
+            <div class="page-content px-4 py-4">
+
+                <!-- Stats Row -->
+                <div class="stats-row">
+                    <div class="admin-card stat-card-new" onclick="window.location.href='dashboard.html?filter=Pending'"
+                        style="cursor: pointer;">
+                        <div class="stat-header">
+                            <span class="stat-title">Pending</span>
+                            <div class="stat-icon-square bg-warning-subtle text-warning"><i class="fas fa-clock"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value-big" id="statPending">--</div>
+                    </div>
+                    <div class="admin-card stat-card-new"
+                        onclick="window.location.href='dashboard.html?filter=In%20Progress'" style="cursor: pointer;">
+                        <div class="stat-header">
+                            <span class="stat-title">In Progress</span>
+                            <div class="stat-icon-square bg-primary-subtle text-primary"><i class="fas fa-spinner"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value-big" id="statInProgress">--</div>
+                    </div>
+                    <div class="admin-card stat-card-new"
+                        onclick="window.location.href='dashboard.html?filter=Resolved'" style="cursor: pointer;">
+                        <div class="stat-header">
+                            <span class="stat-title">Resolved</span>
+                            <div class="stat-icon-square bg-success-subtle text-success"><i
+                                    class="fas fa-check-circle"></i></div>
+                        </div>
+                        <div class="stat-value-big" id="statResolved">--</div>
+                    </div>
+                </div>
+
+                <!-- Search -->
+                <div class="mb-4">
+                    <div class="bg-white border rounded-3 d-flex align-items-center px-3 py-2 shadow-sm">
+                        <i class="fas fa-search text-secondary me-3"></i>
+                        <input type="text" id="searchInput" class="form-control border-0 shadow-none p-0"
+                            placeholder="Search your complaints by ID, title, or keyword...">
+                    </div>
+                </div>
+
+                <!-- List -->
+                <div id="complaintListContainer">
+                    <div class="text-center py-5">
+                        <div class="spinner-border text-primary" role="status"></div>
+                        <p class="text-muted mt-3">Loading your complaints...</p>
+                    </div>
+                </div>
+
+                <div class="text-center mt-4 text-secondary small d-none" id="showingCount">
+                    Showing all complaints
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../js/nav.js"></script>
+    <script src="../../js/student/dashboard.js"></script>
+</body>
+
+</html>
